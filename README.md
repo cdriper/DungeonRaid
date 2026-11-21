@@ -27,6 +27,9 @@ repository brings it back, so it can still be played on today's devices.
 - **Ports for Android, Windows and the Web** (Emscripten/WebAssembly; desktop and mobile
   browsers). Saves use the same format everywhere, so progress can move between them.
 
+## Web version
+
+Web version:  [https://cdriper.github.io/DungeonRaid/](https://cdriper.github.io/DungeonRaid/)
 
 ## Copyright
 
