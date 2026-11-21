@@ -1,0 +1,47 @@
+<!doctype html>
+<!-- The web build's page (emcc --shell-file): a black page with the game's canvas. SDL fills the page
+     with the canvas (SDL_WINDOW_FILL_DOCUMENT) and hides the other elements once the game starts. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Dungeon Raid</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  /* no scrolling, no pull-to-refresh, no text selection or long-press menu on phones */
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; overscroll-behavior: none; }
+  canvas { display: block; touch-action: none; outline: none;
+           user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+  #status { position: absolute; top: 45%; width: 100%; text-align: center;
+            color: #bbb; font: 18px sans-serif; }
+</style>
+</head>
+<body>
+<div id="status">Loading…</div>
+<canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+<script>
+  // SDL blocks the browser's action for every key the game receives. Leave reload and the developer
+  // tools to the browser: seen first here (capture phase), they never reach SDL.
+  window.addEventListener('keydown', function (e) {
+    var k = e.key, ctrl = e.ctrlKey || e.metaKey;
+    if (k === 'F5' || k === 'F12' || (ctrl && (k === 'r' || k === 'R')) ||
+        (ctrl && e.shiftKey && (k === 'I' || k === 'J' || k === 'C'))) {
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
+  var Module = {
+    canvas: document.getElementById('canvas'),
+    setStatus: function (text) {
+      var status = document.getElementById('status');
+      if (status) status.textContent = text || 'Starting…';
+    },
+    onAbort: function (what) {
+      var status = document.getElementById('status');
+      if (status) status.textContent = 'Dungeon Raid stopped: ' + what;
+    }
+  };
+</script>
+{{{ SCRIPT }}}
+</body>
+</html>

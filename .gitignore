@@ -1,0 +1,21 @@
+# Build outputs: desktop CMake (build/), Android: everything Gradle, Kotlin and the NDK generate
+/build*/
+/platform/android/build/
+
+# Local settings
+/platform/android/local.properties
+CMakeUserPresets.json
+
+# Third-party sources (downloaded by: cmake -P third_party/fetch.cmake)
+/third_party/*/
+
+# Signing keys: never commit
+*.jks
+*.keystore
+
+# IDE / OS
+.idea/
+.vs/
+.vscode/
+Thumbs.db
+desktop.ini
